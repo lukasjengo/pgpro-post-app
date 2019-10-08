@@ -5,8 +5,8 @@ import { Svg } from './styles';
 
 import sprite from '../../assets/ui-icon-sprites.svg';
 
-const CustomIcon = ({ name }) => (
-  <Svg>
+const CustomIcon = ({ name, withBorder }) => (
+  <Svg withBorder={withBorder}>
     <use xlinkHref={`${sprite}#${name}`}></use>
   </Svg>
 );

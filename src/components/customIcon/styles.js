@@ -7,8 +7,15 @@ export const Svg = styled.svg`
   width: 3rem;
   height: 3rem;
   padding: 6px;
+  /* border-radius: 50%;
+  border: 2px solid ${variables.colorSecondary}; */
+
+  ${({ withBorder }) =>
+    withBorder &&
+    `
   border-radius: 50%;
   border: 2px solid ${variables.colorSecondary};
+  `}
 
   transition: all 0.2s;
 `;

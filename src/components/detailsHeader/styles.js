@@ -5,6 +5,7 @@ import variables from '../../styles/variables';
 export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 4rem;
 `;
 
 export const Button = styled.button`

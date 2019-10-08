@@ -24,7 +24,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   a {
-    color: ${variables.colorBlack};
+    color: inherit;
     text-decoration: none;
   }
 
