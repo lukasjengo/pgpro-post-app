@@ -11,9 +11,11 @@ import { UserCardList } from './styles';
 
 const UserList = ({ users, loading, getUsers }) => {
   useEffect(() => {
-    getUsers();
+    if (users.length < 1) {
+      getUsers();
+    }
     //eslint-disable-next-line
-  }, []);
+  }, [users]);
 
   return loading ? (
     <Spinner />

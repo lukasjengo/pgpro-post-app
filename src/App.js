@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 
 // Pages
 import Homepage from './pages/homepage/Homepage';
+import UserDetails from './pages/userDetails/UserDetails';
 
 // Styles
 import GlobalStyles from './styles/GlobalStyles';
@@ -17,6 +18,7 @@ const App = () => {
       <MainWrapper>
         <Switch>
           <Route exact path='/' render={Homepage} />
+          <Route exact path='/user/:id' render={UserDetails} />
         </Switch>
       </MainWrapper>
     </Fragment>

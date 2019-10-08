@@ -9,8 +9,8 @@ const spin = keyframes`
 export const SpinnerContainer = styled.div`
   display: inline-block;
   text-align: center;
-  width: 75px;
-  height: 75px;
+  width: 7rem;
+  height: 7rem;
   border: 3px solid rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   border-top-color: ${variables.colorSecondary};

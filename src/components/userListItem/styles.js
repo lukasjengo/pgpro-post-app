@@ -37,13 +37,8 @@ export const LinkWrapper = styled.div`
 
   a {
     display: block;
+    color: ${variables.colorWhite};
     transition: all 0.2s;
-
-    &,
-    &:visited {
-      color: ${variables.colorWhite};
-      text-decoration: none;
-    }
 
     &:hover {
       color: ${variables.colorSecondary};
@@ -57,12 +52,7 @@ export const DetailsLink = styled(Link)`
   padding: 0.7rem 2rem;
   border-radius: 3px;
   transition: all 0.2s;
-
-  &:link,
-  &:visited {
-    color: ${variables.colorWhite};
-    text-decoration: none;
-  }
+  color: ${variables.colorWhite};
 
   &:hover {
     background-color: ${variables.colorGreyLight};

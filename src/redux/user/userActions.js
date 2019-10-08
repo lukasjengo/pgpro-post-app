@@ -17,6 +17,6 @@ export const getUsers = () => async dispatch => {
       type: USER_ERROR,
       payload: err.message
     });
-    dispatch(setAlert('Unable to fetch the data', 'danger'));
+    dispatch(setAlert('Unable to fetch all user data', 'danger'));
   }
 };

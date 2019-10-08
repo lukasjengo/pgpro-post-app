@@ -2,6 +2,7 @@ import { GET_USERS, USER_ERROR } from './userTypes';
 
 const initialState = {
   users: [],
+  currentUser: null,
   loading: true,
   error: {}
 };

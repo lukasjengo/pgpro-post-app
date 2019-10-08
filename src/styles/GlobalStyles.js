@@ -22,6 +22,22 @@ const GlobalStyles = createGlobalStyle`
     color: ${variables.colorBlack};
     padding: 4rem;
   }
+
+  a {
+    color: ${variables.colorBlack};
+    text-decoration: none;
+  }
+
+  button {
+    padding: 0;
+    border: none;
+    border-radius: 3px;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+
+    cursor: pointer;
+  }
 `;
 
 export default GlobalStyles;
