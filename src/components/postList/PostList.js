@@ -7,11 +7,16 @@ import { getUserPosts } from '../../redux/post/postActions';
 import PostListItem from '../postListItem/PostListItem';
 import Spinner from '../spinner/Spinner';
 
-const PostList = ({ match, history, posts, getUserPosts }) => {
+const PostList = ({
+  match,
+  history,
+  post: { posts, loading },
+  getUserPosts
+}) => {
   useEffect(() => {
-    getUserPosts(match.params.id);
+    getUserPosts(match.params.userId);
   }, []);
-  return posts.loading ? (
+  return loading ? (
     <Spinner />
   ) : (
     <ul style={{ listStyle: 'none' }}>
@@ -25,12 +30,12 @@ const PostList = ({ match, history, posts, getUserPosts }) => {
 PostList.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  posts: PropTypes.array.isRequired,
+  post: PropTypes.object.isRequired,
   getUserPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  posts: state.post.posts
+  post: state.post
 });
 
 export default connect(

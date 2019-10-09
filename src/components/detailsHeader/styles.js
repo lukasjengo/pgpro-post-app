@@ -6,6 +6,12 @@ export const HeaderWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   margin-bottom: 4rem;
+
+  h2 {
+    font-size: 2.2rem;
+    ${({ isAddBtn }) =>
+      !isAddBtn && `margin-right: 50%; transform:translateX(50%)`}
+  }
 `;
 
 export const Button = styled.button`

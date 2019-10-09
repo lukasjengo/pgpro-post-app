@@ -1,9 +1,18 @@
-import { GET_USER_POSTS, GET_COMMENTS, POST_ERROR } from './postTypes';
+import {
+  GET_USER_POSTS,
+  GET_CURRENT_POST,
+  GET_POST_COMMENTS,
+  POST_ERROR,
+  POST_LOADING,
+  COMMENT_LOADING
+} from './postTypes';
 
 const initialState = {
   posts: [],
+  currentPost: null,
   comments: [],
-  loading: true,
+  postLoading: false,
+  commentLoading: false,
   error: {}
 };
 
@@ -15,13 +24,37 @@ export default (state = initialState, action) => {
       return {
         ...state,
         posts: payload,
-        loading: false
+        postLoading: false
+      };
+    case GET_CURRENT_POST:
+      return {
+        ...state,
+        currentPost: payload,
+        comments: [],
+        postLoading: false
+      };
+    case GET_POST_COMMENTS:
+      return {
+        ...state,
+        comments: payload,
+        commentLoading: false
       };
     case POST_ERROR:
       return {
         ...state,
         error: payload,
-        loading: false
+        postLoading: false,
+        commentLoading: false
+      };
+    case POST_LOADING:
+      return {
+        ...state,
+        postLoading: true
+      };
+    case COMMENT_LOADING:
+      return {
+        ...state,
+        commentLoading: true
       };
     default:
       return state;

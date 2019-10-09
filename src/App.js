@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 // Pages
 import Homepage from './pages/homepage/Homepage';
 import UserDetails from './pages/userDetails/UserDetails';
+import PostDetails from './pages/postDetails/PostDetails';
 
 // Styles
 import GlobalStyles from './styles/GlobalStyles';
@@ -17,8 +18,9 @@ const App = () => {
       <GlobalStyles />
       <MainWrapper>
         <Switch>
-          <Route exact path='/' render={Homepage} />
-          <Route exact path='/user/:id' render={UserDetails} />
+          <Route exact path='/' component={Homepage} />
+          <Route exact path='/user/:userId' component={UserDetails} />
+          <Route exact path='/user/:userId/:postId' component={PostDetails} />
         </Switch>
       </MainWrapper>
     </Fragment>

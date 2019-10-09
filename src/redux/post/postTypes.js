@@ -1,3 +1,6 @@
 export const GET_USER_POSTS = 'GET_USER_POSTS';
-export const GET_COMMENTS = 'GET_COMMENTS';
+export const GET_CURRENT_POST = 'GET_CURRENT_POST';
+export const GET_POST_COMMENTS = ' GET_POST_COMMENTS';
 export const POST_ERROR = 'POST_ERROR';
+export const POST_LOADING = 'POST_LOADING';
+export const COMMENT_LOADING = 'COMMENT_LOADING';

@@ -7,7 +7,7 @@ import PostList from '../../components/postList/PostList';
 const UserDetails = ({ match, history }) => {
   return (
     <Fragment>
-      <DetailsHeader history={history} match={match} />
+      <DetailsHeader history={history} match={match} isAddBtn />
       <PostList history={history} match={match} />
     </Fragment>
   );

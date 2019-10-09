@@ -2,8 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { getUsers } from '../../redux/user/userActions';
-import { getCurrentUser } from '../../utils/userUtils';
+import { getCurrentUser } from '../../redux/user/userActions';
 
 import CustomIcon from '../customIcon/CustomIcon';
 import Spinner from '../spinner/Spinner';
@@ -13,28 +12,31 @@ import { HeaderWrapper, Button, Span } from './styles';
 const DetailsHeader = ({
   history,
   match,
-  user: { users, loading },
-  getUsers
+  user: { currentUser, loading },
+  getCurrentUser,
+  isAddBtn
 }) => {
   useEffect(() => {
-    if (users.length < 1) {
-      getUsers();
+    if (currentUser === null || currentUser.id !== match.params.userId * 1) {
+      getCurrentUser(match.params.userId);
     }
     //eslint-disable-next-line
-  }, [users]);
-  return loading ? (
+  }, []);
+  return loading || currentUser === null ? (
     <Spinner />
   ) : (
-    <HeaderWrapper>
+    <HeaderWrapper isAddBtn={isAddBtn}>
       <Button onClick={() => history.goBack()}>
         <CustomIcon name='icon-arrow-left' withBorder={true} />
         <Span>Back</Span>
       </Button>
-      <h1>{getCurrentUser(users, match.params.id)}</h1>
-      <Button>
-        <CustomIcon name='icon-plus' withBorder={true} />
-        <Span>Add post</Span>
-      </Button>
+      <h2>{currentUser.name}</h2>
+      {isAddBtn && (
+        <Button>
+          <CustomIcon name='icon-plus' withBorder={true} />
+          <Span>Add post</Span>
+        </Button>
+      )}
     </HeaderWrapper>
   );
 };
@@ -43,7 +45,7 @@ DetailsHeader.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  getUsers: PropTypes.func.isRequired
+  getCurrentUser: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -52,5 +54,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getUsers }
+  { getCurrentUser }
 )(DetailsHeader);

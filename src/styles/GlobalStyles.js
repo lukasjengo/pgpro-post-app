@@ -35,6 +35,7 @@ const GlobalStyles = createGlobalStyle`
     font: inherit;
     color: inherit;
     background-color: transparent;
+    outline: none;
 
     cursor: pointer;
   }
