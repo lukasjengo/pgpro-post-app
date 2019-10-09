@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { CommentBox } from './styles';
 
@@ -12,6 +13,10 @@ const CommentListItem = ({ comment }) => {
       <p>{comment.body}</p>
     </CommentBox>
   );
+};
+
+CommentListItem.propTypes = {
+  comment: PropTypes.object.isRequired
 };
 
 export default CommentListItem;

@@ -12,7 +12,8 @@ const CustomIcon = ({ name, withBorder }) => (
 );
 
 CustomIcon.propTypes = {
-  name: PropTypes.string.isRequired
+  name: PropTypes.string.isRequired,
+  withBorder: PropTypes.bool.isRequired
 };
 
 export default CustomIcon;

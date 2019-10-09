@@ -45,7 +45,8 @@ DetailsHeader.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-  getCurrentUser: PropTypes.func.isRequired
+  getCurrentUser: PropTypes.func.isRequired,
+  isAddBtn: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({

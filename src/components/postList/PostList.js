@@ -15,6 +15,7 @@ const PostList = ({
 }) => {
   useEffect(() => {
     getUserPosts(match.params.userId);
+    //eslint-disable-next-line
   }, []);
   return loading ? (
     <Spinner />
