@@ -1,13 +1,11 @@
 import React from 'react';
 
-import { SpinnerContainer } from './styles';
+import { SpinnerContainer, StyledSpinner } from './styles';
 
-const Spinner = () => (
-  <div
-    style={{ display: 'flex', justifyContent: 'center', marginBottom: '5rem' }}
-  >
-    <SpinnerContainer />
-  </div>
+const Spinner = ({ size }) => (
+  <SpinnerContainer size={size}>
+    <StyledSpinner size={size} />
+  </SpinnerContainer>
 );
 
 export default Spinner;

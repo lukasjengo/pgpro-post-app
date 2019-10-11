@@ -10,19 +10,30 @@ import Spinner from '../spinner/Spinner';
 const PostList = ({
   match,
   history,
-  post: { posts, loading },
+  posts,
+  postsLoading,
+  postsUpdating,
   getUserPosts
 }) => {
   useEffect(() => {
-    getUserPosts(match.params.userId);
+    if (posts.length < 1) {
+      getUserPosts(match.params.userId);
+    } else if (posts[0].userId !== match.params.userId * 1) {
+      getUserPosts(match.params.userId);
+    }
     //eslint-disable-next-line
   }, []);
-  return loading ? (
+  return postsLoading ? (
     <Spinner />
   ) : (
     <ul style={{ listStyle: 'none' }}>
       {posts.map(post => (
-        <PostListItem key={post.id} post={post} history={history} />
+        <PostListItem
+          key={post.id}
+          post={post}
+          history={history}
+          postsUpdating={postsUpdating}
+        />
       ))}
     </ul>
   );
@@ -31,12 +42,16 @@ const PostList = ({
 PostList.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  post: PropTypes.object.isRequired,
+  posts: PropTypes.array.isRequired,
+  postsLoading: PropTypes.bool,
+  postsUpdating: PropTypes.bool,
   getUserPosts: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  posts: state.post.posts.data,
+  postsLoading: state.post.posts.loading,
+  postsUpdating: state.post.posts.isUpdating
 });
 
 export default connect(

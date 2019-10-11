@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { UserCard, LinkWrapper, DetailsLink } from './styles';
+import { UserCard, LinkWrapper } from './styles';
+
+import CustomButton from '../customButton/CustomButton';
 
 const UserListItem = ({
   user: { id, name, email, phone, website, company }
@@ -21,7 +23,9 @@ const UserListItem = ({
       <br />
       {company.bs}
     </p>
-    <DetailsLink to={`/user/${id}`}>Details</DetailsLink>
+    <CustomButton to={`/user/${id}`} isLink type='secondary'>
+      Details
+    </CustomButton>
   </UserCard>
 );
 

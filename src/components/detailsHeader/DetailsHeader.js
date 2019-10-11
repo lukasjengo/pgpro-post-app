@@ -3,18 +3,21 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getCurrentUser } from '../../redux/user/userActions';
+import { showModal } from '../../redux/modal/modalActions';
 
 import CustomIcon from '../customIcon/CustomIcon';
 import Spinner from '../spinner/Spinner';
 
-import { HeaderWrapper, Button, Span } from './styles';
+import { HeaderWrapper, StyledButton, StyledSpan } from './styles';
 
 const DetailsHeader = ({
   history,
   match,
-  user: { currentUser, loading },
+  currentUser,
+  userLoading,
   getCurrentUser,
-  isAddBtn
+  showModal,
+  showAddBtn
 }) => {
   useEffect(() => {
     if (currentUser === null || currentUser.id !== match.params.userId * 1) {
@@ -22,20 +25,20 @@ const DetailsHeader = ({
     }
     //eslint-disable-next-line
   }, []);
-  return loading || currentUser === null ? (
+  return userLoading || currentUser === null ? (
     <Spinner />
   ) : (
-    <HeaderWrapper isAddBtn={isAddBtn}>
-      <Button onClick={() => history.goBack()}>
-        <CustomIcon name='icon-arrow-left' withBorder={true} />
-        <Span>Back</Span>
-      </Button>
+    <HeaderWrapper showAddBtn={showAddBtn}>
+      <StyledButton onClick={() => history.goBack()}>
+        <CustomIcon name='icon-arrow-left' withBorder />
+        <StyledSpan>Back</StyledSpan>
+      </StyledButton>
       <h2>{currentUser.name}</h2>
-      {isAddBtn && (
-        <Button>
-          <CustomIcon name='icon-plus' withBorder={true} />
-          <Span>Add post</Span>
-        </Button>
+      {showAddBtn && (
+        <StyledButton onClick={() => showModal('addpost')}>
+          <CustomIcon name='icon-plus' withBorder />
+          <StyledSpan>Add post</StyledSpan>
+        </StyledButton>
       )}
     </HeaderWrapper>
   );
@@ -44,16 +47,19 @@ const DetailsHeader = ({
 DetailsHeader.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  user: PropTypes.object.isRequired,
+  currentUser: PropTypes.object,
+  userLoading: PropTypes.bool,
   getCurrentUser: PropTypes.func.isRequired,
-  isAddBtn: PropTypes.bool.isRequired
+  showModal: PropTypes.func.isRequired,
+  showAddBtn: PropTypes.bool
 };
 
 const mapStateToProps = state => ({
-  user: state.user
+  currentUser: state.user.currentUser.data,
+  userLoading: state.user.currentUser.loading
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentUser }
+  { getCurrentUser, showModal }
 )(DetailsHeader);

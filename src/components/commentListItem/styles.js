@@ -8,4 +8,24 @@ export const CommentBox = styled.li`
   border-radius: 3px;
   padding: 1rem 2.5rem;
   margin-bottom: 1.2rem;
+
+  transition: all 0.2s;
+`;
+
+export const CommentHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+
+  span {
+    font-weight: 600;
+  }
+
+  a {
+    border-bottom: 1px solid ${variables.colorPrimaryDark};
+
+    &:hover {
+      color: ${variables.colorPrimaryDark};
+    }
+  }
 `;

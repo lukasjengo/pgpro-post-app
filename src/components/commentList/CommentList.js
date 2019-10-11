@@ -3,38 +3,47 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { getPostComments } from '../../redux/post/postActions';
+import { showModal } from '../../redux/modal/modalActions';
 
 import CommentListItem from '../commentListItem/CommentListItem';
 import Spinner from '../spinner/Spinner';
 
 import { ButtonWrapper } from './styles';
 
-const CommentList = ({
-  match,
-  post: { comments, commentLoading },
-  getPostComments
-}) => {
+const CommentList = ({ comments, currentPost, getPostComments, showModal }) => {
   const [showComments, toggleCommentVisibility] = useState(false);
 
-  const onBtnClick = () => {
+  const onToggleClick = () => {
     toggleCommentVisibility(!showComments);
-    if (!showComments && comments.length < 1) {
-      getPostComments(match.params.postId);
+    if (!showComments && comments.data.length < 1) {
+      getPostComments(currentPost.data.id);
+    } else if (
+      !showComments &&
+      comments.data[0].postId !== currentPost.data.id
+    ) {
+      getPostComments(currentPost.data.id);
     }
   };
 
   return (
     <Fragment>
       <ButtonWrapper>
-        <button onClick={onBtnClick}>
+        <button onClick={onToggleClick}>
           {showComments ? 'Hide comments' : 'Show comments'}
         </button>
-        <button>Add comment</button>
+        <button
+          onClick={() => {
+            showModal('addcomment');
+            if (comments.data.length < 1) getPostComments(currentPost.data.id);
+          }}
+        >
+          Add comment
+        </button>
       </ButtonWrapper>
-      {showComments && commentLoading && <Spinner />}
-      {showComments && !commentLoading && (
+      {showComments && comments.loading && <Spinner />}
+      {showComments && !comments.loading && (
         <ul style={{ listStyle: 'none' }}>
-          {comments.map(comment => (
+          {comments.data.map(comment => (
             <CommentListItem key={comment.id} comment={comment} />
           ))}
         </ul>
@@ -44,16 +53,18 @@ const CommentList = ({
 };
 
 CommentList.propTypes = {
-  match: PropTypes.object.isRequired,
-  post: PropTypes.object.isRequired,
-  getPostComments: PropTypes.func.isRequired
+  comments: PropTypes.object.isRequired,
+  currentPost: PropTypes.object.isRequired,
+  getPostComments: PropTypes.func.isRequired,
+  showModal: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  comments: state.post.comments,
+  currentPost: state.post.currentPost
 });
 
 export default connect(
   mapStateToProps,
-  { getPostComments }
+  { getPostComments, showModal }
 )(CommentList);

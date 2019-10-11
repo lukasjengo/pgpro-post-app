@@ -6,31 +6,33 @@ import { getCurrentPost } from '../../redux/post/postActions';
 
 import DetailsHeader from '../../components/detailsHeader/DetailsHeader';
 import CommentList from '../../components/commentList/CommentList';
+import ModalForm from '../../components/modalForm/ModalForm';
 import Spinner from '../../components/spinner/Spinner';
 
 import { PostTitle, Paragraph } from './styles';
 
-const PostDetails = ({
-  match,
-  history,
-  post: { currentPost, loading },
-  getCurrentPost
-}) => {
+const PostDetails = ({ match, history, currentPost, getCurrentPost }) => {
   useEffect(() => {
-    getCurrentPost(match.params.postId, match.params.userId);
+    if (currentPost.data === null) {
+      getCurrentPost(match.params.postId, match.params.userId);
+    } else if (currentPost.data.id !== match.params.postId * 1) {
+      getCurrentPost(match.params.postId, match.params.userId);
+    }
+    //eslint-disable-next-line
   }, []);
   return (
     <Fragment>
       <DetailsHeader history={history} match={match} isAddBtn={false} />
-      {loading || currentPost === null ? (
+      {currentPost.loading || currentPost.data === null ? (
         <Spinner />
       ) : (
         <Fragment>
-          <PostTitle>{currentPost.title}</PostTitle>
-          <Paragraph>{currentPost.body}</Paragraph>
+          <PostTitle>{currentPost.data.title}</PostTitle>
+          <Paragraph>{currentPost.data.body}</Paragraph>
         </Fragment>
       )}
-      <CommentList match={match} />
+      <CommentList />
+      <ModalForm match={match} />
     </Fragment>
   );
 };
@@ -38,12 +40,12 @@ const PostDetails = ({
 PostDetails.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  post: PropTypes.object.isRequired,
+  currentPost: PropTypes.object.isRequired,
   getCurrentPost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  post: state.post
+  currentPost: state.post.currentPost
 });
 
 export default connect(

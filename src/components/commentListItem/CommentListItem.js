@@ -1,15 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { CommentBox } from './styles';
+import { CommentBox, CommentHeader } from './styles';
 
 const CommentListItem = ({ comment }) => {
   return (
     <CommentBox>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+      <CommentHeader>
         <span>{comment.name}</span>
         <a href={`mailto:${comment.email}`}>{comment.email}</a>
-      </div>
+      </CommentHeader>
       <p>{comment.body}</p>
     </CommentBox>
   );

@@ -15,7 +15,7 @@ const UserList = ({ users, loading, getUsers }) => {
       getUsers();
     }
     //eslint-disable-next-line
-  }, [users]);
+  }, []);
 
   return loading ? (
     <Spinner />
@@ -35,8 +35,8 @@ UserList.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  users: state.user.users,
-  loading: state.user.loading
+  users: state.user.users.data,
+  loading: state.user.users.loading
 });
 
 export default connect(

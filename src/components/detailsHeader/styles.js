@@ -9,12 +9,12 @@ export const HeaderWrapper = styled.div`
 
   h2 {
     font-size: 2.2rem;
-    ${({ isAddBtn }) =>
-      !isAddBtn && `margin-right: 50%; transform:translateX(50%)`}
+    ${({ showAddBtn }) =>
+      !showAddBtn && `margin-right: 50%; transform:translateX(50%)`}
   }
 `;
 
-export const Button = styled.button`
+export const StyledButton = styled.button`
   display: flex;
   align-items: center;
 
@@ -28,7 +28,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Span = styled.span`
+export const StyledSpan = styled.span`
   margin-left: 0.5rem;
   font-size: 1.3rem;
   transition: all 0.2s;

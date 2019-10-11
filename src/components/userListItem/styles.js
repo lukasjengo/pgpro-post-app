@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import variables from '../../styles/variables';
 
-import { Link } from 'react-router-dom';
-
 export const UserCard = styled.li`
   padding: 1.5rem 2rem;
   border-radius: 3px;
@@ -43,19 +41,5 @@ export const LinkWrapper = styled.div`
     &:hover {
       color: ${variables.colorSecondary};
     }
-  }
-`;
-
-export const DetailsLink = styled(Link)`
-  display: inline-block;
-  background-color: ${variables.colorSecondary};
-  padding: 0.7rem 2rem;
-  border-radius: 3px;
-  transition: all 0.2s;
-  color: ${variables.colorWhite};
-
-  &:hover {
-    background-color: ${variables.colorGreyLight};
-    color: ${variables.colorBlack};
   }
 `;
