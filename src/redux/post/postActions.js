@@ -103,6 +103,7 @@ export const addPost = (formData, userId) => async dispatch => {
       payload: data
     });
     dispatch(hideModal());
+    dispatch(setAlert('Post successfully created', 'success'));
   } catch (err) {
     dispatch({
       type: ADD_POST_ERROR,
@@ -122,6 +123,7 @@ export const deletePost = postId => async dispatch => {
       type: DELETE_POST,
       payload: postId
     });
+    dispatch(setAlert('Post successfully deleted', 'success'));
   } catch (err) {
     dispatch({
       type: DELETE_POST_ERROR,
@@ -151,6 +153,7 @@ export const addComment = (formData, postId) => async dispatch => {
       payload: data
     });
     dispatch(hideModal());
+    dispatch(setAlert('Comment successfully created', 'success'));
   } catch (err) {
     dispatch({
       type: ADD_COMMENT_ERROR,

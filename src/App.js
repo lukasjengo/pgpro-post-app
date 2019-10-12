@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 // Components
+import Alert from './components/alert/Alert';
 
 // Pages
 import Homepage from './pages/homepage/Homepage';
@@ -17,6 +18,7 @@ const App = () => {
     <Fragment>
       <GlobalStyles />
       <MainWrapper>
+        <Alert />
         <Switch>
           <Route exact path='/' component={Homepage} />
           <Route exact path='/user/:userId' component={UserDetails} />

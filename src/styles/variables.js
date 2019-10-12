@@ -6,6 +6,7 @@ export default {
   colorGreyLight: '#eaeaea',
   colorBlack: '#252a34',
   colorWhite: '#ffffff',
+  colorSuccess: '#42b883',
 
   //Shadows
   shadowLight: '0 1.5rem 2.5rem rgba(0, 0, 0, .2)'

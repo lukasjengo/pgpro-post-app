@@ -9,7 +9,6 @@ import {
 
 import { setAlert } from '../alert/alertActions';
 
-// Get all users
 export const getUsers = () => async dispatch => {
   try {
     dispatch({

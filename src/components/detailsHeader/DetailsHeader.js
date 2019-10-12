@@ -25,11 +25,18 @@ const DetailsHeader = ({
     }
     //eslint-disable-next-line
   }, []);
+  const onBackClick = () => {
+    if (match.path === '/user/:userId/:postId') {
+      history.push(`/user/${match.params.userId}`);
+    } else if (match.path === '/user/:userId') {
+      history.push('/');
+    }
+  };
   return userLoading || currentUser === null ? (
     <Spinner />
   ) : (
     <HeaderWrapper showAddBtn={showAddBtn}>
-      <StyledButton onClick={() => history.goBack()}>
+      <StyledButton onClick={onBackClick}>
         <CustomIcon name='icon-arrow-left' withBorder />
         <StyledSpan>Back</StyledSpan>
       </StyledButton>
