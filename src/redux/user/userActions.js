@@ -14,7 +14,7 @@ export const getUsers = () => async dispatch => {
     dispatch({
       type: GET_USERS_LOADING
     });
-    const res = await fetch('/users');
+    const res = await fetch(`${process.env.REACT_APP_SERVER_API_ROUTE}/users`);
     const data = await res.json();
 
     dispatch({
@@ -36,7 +36,9 @@ export const getCurrentUser = userId => async dispatch => {
     dispatch({
       type: GET_CURRENT_USER_LOADING
     });
-    const res = await fetch(`/users/${userId}`);
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_API_ROUTE}/users/${userId}`
+    );
     const data = await res.json();
     dispatch({
       type: GET_CURRENT_USER,

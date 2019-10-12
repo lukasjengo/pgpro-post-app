@@ -29,7 +29,9 @@ export const getUserPosts = userId => async dispatch => {
     dispatch({
       type: GET_USER_POSTS_LOADING
     });
-    const res = await fetch(`/posts?userId=${userId}`);
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_API_ROUTE}/posts?userId=${userId}`
+    );
     const data = await res.json();
     dispatch({
       type: GET_USER_POSTS,
@@ -49,7 +51,9 @@ export const getCurrentPost = (postId, userId) => async dispatch => {
     dispatch({
       type: GET_CURRENT_POST_LOADING
     });
-    const res = await fetch(`/users/${userId}/posts?id=${postId}`);
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_API_ROUTE}/users/${userId}/posts?id=${postId}`
+    );
     const data = await res.json();
     dispatch({
       type: GET_CURRENT_POST,
@@ -69,7 +73,9 @@ export const getPostComments = postId => async dispatch => {
     dispatch({
       type: GET_POST_COMMENTS_LOADING
     });
-    const res = await fetch(`/comments?postId=${postId}`);
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_API_ROUTE}/comments?postId=${postId}`
+    );
     const data = await res.json();
     dispatch({
       type: GET_POST_COMMENTS,
@@ -89,7 +95,7 @@ export const addPost = (formData, userId) => async dispatch => {
     dispatch({
       type: ADD_POST_LOADING
     });
-    const res = await fetch(`/posts`, {
+    const res = await fetch(`${process.env.REACT_APP_SERVER_API_ROUTE}/posts`, {
       method: 'POST',
       body: JSON.stringify({ ...formData, userId }),
       headers: {
@@ -118,7 +124,9 @@ export const deletePost = postId => async dispatch => {
     dispatch({
       type: DELETE_POST_LOADING
     });
-    await fetch(`/posts/${postId}`, { method: 'DELETE' });
+    await fetch(`${process.env.REACT_APP_SERVER_API_ROUTE}/posts/${postId}`, {
+      method: 'DELETE'
+    });
     dispatch({
       type: DELETE_POST,
       payload: postId
@@ -139,13 +147,16 @@ export const addComment = (formData, postId) => async dispatch => {
     dispatch({
       type: ADD_COMMENT_LOADING
     });
-    const res = await fetch(`/posts/${postId}/comments`, {
-      method: 'POST',
-      body: JSON.stringify({ ...formData, id }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
+    const res = await fetch(
+      `${process.env.REACT_APP_SERVER_API_ROUTE}/posts/${postId}/comments`,
+      {
+        method: 'POST',
+        body: JSON.stringify({ ...formData, id }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8'
+        }
       }
-    });
+    );
     const data = await res.json();
     data.id = id;
     dispatch({
