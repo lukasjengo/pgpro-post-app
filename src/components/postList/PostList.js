@@ -23,7 +23,7 @@ const PostList = ({
     }
     //eslint-disable-next-line
   }, []);
-  return postsLoading ? (
+  return postsLoading || posts.length < 1 ? (
     <Spinner />
   ) : (
     <ul style={{ listStyle: 'none' }}>
