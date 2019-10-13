@@ -31,14 +31,15 @@ const CommentList = ({ comments, currentPost, getPostComments, showModal }) => {
         <button onClick={onToggleClick}>
           {showComments ? 'Hide comments' : 'Show comments'}
         </button>
-        <button
-          onClick={() => {
-            showModal('addcomment');
-            if (comments.data.length < 1) getPostComments(currentPost.data.id);
-          }}
-        >
-          Add comment
-        </button>
+        {showComments && (
+          <button
+            onClick={() => {
+              showModal('addcomment');
+            }}
+          >
+            Add comment
+          </button>
+        )}
       </ButtonWrapper>
       {showComments && comments.loading && <Spinner />}
       {showComments && !comments.loading && (
